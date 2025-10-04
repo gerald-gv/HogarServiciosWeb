@@ -38,8 +38,8 @@ const Footer = () => {
                     <p className='text-sm md:text-base'>Renovando y Transformando tu hogar con las nuevas tecnologias</p>
                     <div>
                         <ul className='flex gap-3'>
-                            {marcaItems.map((item) => (
-                                <li className='flex items-center justify-center'>
+                            {marcaItems.map((item, i) => (
+                                <li className='flex items-center justify-center' key={i}>
                                     <Link href={item.href} className='w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-sky-600 transition-colors duration-300'>
                                         <item.icono className='w-6 h-6' />
                                     </Link>
@@ -54,8 +54,8 @@ const Footer = () => {
                 <div className='space-y-4 ml-6'>
                     <h3 className='font-semibold text-lg text-white mb-3'>Secciones</h3>
                     <ul className='space-y-2'>
-                        {seccionesItems.map((item) => (
-                            <li>
+                        {seccionesItems.map((item, i) => (
+                            <li key={i}>
                                 <Link href={item.href} className='text-sm md:text-base hover:text-sky-600 transition-colors duration-300'>
                                     {item.name}
                                 </Link>

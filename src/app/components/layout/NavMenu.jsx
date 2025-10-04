@@ -34,8 +34,8 @@ const NavMenu = () => {
                 {/* NavMenu Desktop */}
                 <nav className='hidden lg:flex items-center gap-8'>
                     <ul className='flex space-x-8'>
-                        {menuItems.map((item) => (
-                            <li>
+                        {menuItems.map((item, i) => (
+                            <li key={i}>
                                 <Link href={item.href} className='relative group text-lg font-medium text-white hover:text-blue-400 transition-colors duration-300'>
                                     {item.name}
                                     <span className='absolute left-0 bottom-0 h-[2px] w-0 bg-sky-500 transition-all duration-300 group-hover:w-full'/>
