@@ -12,12 +12,12 @@ const HeroSection = () => {
     ]
 
     return (
-        <section className='flex items-center pt-14 md:pt-20 mb-12'>
+        <section className='flex items-center pt-14 md:pt-20 mb-20'>
             <div className='container mx-auto px-4'>
                 <div className='grid md:grid-cols-2 gap-8 items-center'>
 
                     {/* Presentacion */}
-                    <div className='space-y-6'>
+                    <div className='space-y-6 max-w-2xl'>
                         <h1 className='text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 leading-tight text-balance'>
                             Transforma tu hogar en un {""}
                             <span className='text-blue-600'>Espacio Inteligente</span>
@@ -30,7 +30,7 @@ const HeroSection = () => {
 
                         <div className='flex flex-col items-center md:flex-row gap-3 md:gap-4 py-2'>
                             <Link href="/">
-                                <Button size="lg" className="text-base md:text-lg text-white bg-blue-600 hover:bg-blue-700 hover:shadow-lg py-6 w-auto font-semibold hover:-translate-y-2 transition-all ease-in-out duration-300 cursor-pointer">
+                                <Button size="lg" className="text-base md:text-lg text-white bg-blue-600 hover:bg-blue-700 hover:shadow-lg py-6 font-semibold hover:-translate-y-2 transition-all ease-in-out duration-300 cursor-pointer">
                                     Ver Nuestros Productos
                                     <ArrowRight className='w-4 h-4 md:w-5 md:h-5' />
                                 </Button>

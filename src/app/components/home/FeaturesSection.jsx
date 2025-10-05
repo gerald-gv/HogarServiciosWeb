@@ -6,18 +6,19 @@ const FeaturesSection = () => {
 
     const feature = [
         {icon: Smartphone, titulo: "Control Total", descripcion: "Gestiona todos tus dispositivos desde una sola aplicación móvil intuitiva.", 
-            textcolor: "text-slate-600", bgColor: "bg-slate-500/10"},
+            textcolor: "text-blue-600", bgColor: "bg-slate-500/10"},
         {icon: Shield, titulo: "Seguridad Avanzada", descripcion: "Protección 24/7 con cámaras inteligentes y sistemas de alarma conectados.", 
-            textcolor: "text-slate-600", bgColor: "bg-sky-500/10"},
+            textcolor: "text-sky-600", bgColor: "bg-sky-500/10"},
         {icon: Lock, titulo: "Acceso Inteligente", descripcion: "Cerraduras digitales y control de acceso desde cualquier lugar.", 
-            textcolor: "text-slate-600", bgColor: "bg-slate-500/10"},
+            textcolor: "text-blue-600", bgColor: "bg-slate-500/10"},
     ]
 
 
   return (
-    <section className='py-16 bg-slate-100/60'>
+    <section className='py-16 md:py-20 bg-slate-100/60'>
         <div className='container mx-auto px-4 md:px-8'>
 
+            {/* Cabecera */}
             <div className='text-center max-w-3xl mx-auto mb-12'>
                 <h2 className='text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-balance font-bold text-slate-900 mb-6'>
                     ¿Porque deberias elegir nuestros servicios?
@@ -28,7 +29,9 @@ const FeaturesSection = () => {
                 </p>
             </div>
 
-            <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-8'>
+            {/* Cards Features */}
+
+            <div className='grid lg:grid-cols-3 gap-8'>
                 {feature.map((item, i) => (
                     <Card key={i} className="group hover:shadow-xl transition-all duration-300 hover:scale-105 border-slate-200">
                         <CardContent className="p-6">
@@ -41,6 +44,7 @@ const FeaturesSection = () => {
                     </Card>
                 ))}
             </div>
+            
         </div>
     </section>
   )
