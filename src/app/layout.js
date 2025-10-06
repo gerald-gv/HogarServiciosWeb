@@ -5,9 +5,9 @@ import "./globals.css";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col overflow-x-hidden">
         <NavMenu />
-        <main className="flex-grow overflow-hidden">
+        <main className="flex-grow">
           {children}
         </main>
         <Footer />

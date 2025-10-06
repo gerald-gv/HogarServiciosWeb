@@ -2,6 +2,7 @@ import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '../ui/button'
+import Image from 'next/image'
 
 const HeroSection = () => {
 
@@ -48,6 +49,30 @@ const HeroSection = () => {
                             ))}
                         </div>
                     </div>
+
+                    {/* Imagen de Ref */}
+
+                    <div className='flex justify-center mt-8 md:mt-0'>
+
+                        <div className='block md:hidden rounded-2xl shadow-2xl overflow-hidden'>
+                            <Image
+                                src="/images/Domótica.jpeg"
+                                alt='Hogar aplicada con Domótica'
+                                width={350}
+                                height={350}
+                            />
+                        </div>
+
+                        <div className='hidden md:block rounded-2xl shadow-2xl overflow-hidden'>
+                            <Image
+                                src="/images/Domótica.jpeg"
+                                alt='Hogar aplicada con Domótica'
+                                width={600}
+                                height={600}
+                            />
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
