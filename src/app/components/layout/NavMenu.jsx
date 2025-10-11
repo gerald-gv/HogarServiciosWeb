@@ -13,9 +13,9 @@ const NavMenu = () => {
 
     const menuItems = [
         { name: "Inicio", href: "/" },
-        { name: "Nosotros", href: "/" },
-        { name: "Productos", href: "/" },
-        { name: "Contacto", href: "/" },
+        { name: "Nosotros", href: "/nosotros" },
+        { name: "Productos", href: "/productos" },
+        { name: "Contacto", href: "/contacto" },
     ]
 
     useEffect(() => {

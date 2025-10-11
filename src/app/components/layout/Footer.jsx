@@ -106,8 +106,8 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="border-t border-gray-700 text-center text-sm text-gray-500 py-6 px-4">
-                © 2025 Servicios Hogar. Todos los derechos reservados.
+            <div className="border-t border-gray-700 text-center text-sm text-white py-6 px-4">
+                © {new Date().getFullYear()} IeDomoTics. Todos los derechos reservados.
             </div>
         </footer>
     )
