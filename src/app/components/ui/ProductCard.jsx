@@ -25,8 +25,7 @@ export default function ProductCard({
     onAddToCart?.({ image, title, brand, price, quantity });
   }, [onAddToCart, image, title, brand, price, quantity]);
 
-  const motionProps = useMemo(() => (
-    {
+  const motionProps = {
       initial: { opacity: 0, y: 20, scale: 0.9 },
       animate: { opacity: 1, y: 0, scale: 1 },
       exit: { opacity: 0, y: -20, scale: 0.9 },
@@ -40,7 +39,7 @@ export default function ProductCard({
         scale: 0.97,
         boxShadow: "0px 0px 25px rgba(255, 165, 0, 0.6)",
       },
-    }), []);
+    };
 
   return (
     <motion.div
