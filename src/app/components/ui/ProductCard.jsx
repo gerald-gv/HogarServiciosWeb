@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import PropTypes from "prop-types";
 
 export default function ProductCard({
@@ -14,31 +14,33 @@ export default function ProductCard({
 }) {
   const [quantity, setQuantity] = useState(1);
 
-  const increment = useCallback(() => setQuantity((q) => q + 1), []);
-  const decrement = useCallback(
-    () => setQuantity((q) => Math.max(1, q - 1)),
-    []
-  );
+  const updateQuantity = useCallback((action) => {
+    setQuantity((prevQuantity) => {
+      if (action === "increment") return prevQuantity + 1;
+      if (action === "decrement") return Math.max(1, prevQuantity - 1);
+    })
+  }, [])
 
   const addToCart = useCallback(() => {
     onAddToCart?.({ image, title, brand, price, quantity });
   }, [onAddToCart, image, title, brand, price, quantity]);
 
-  const motionProps = {
-    initial: { opacity: 0, y: 20, scale: 0.9 },
-    animate: { opacity: 1, y: 0, scale: 1 },
-    exit: { opacity: 0, y: -20, scale: 0.9 },
-    transition: { duration: 0.4, ease: "easeOut" },
-    whileHover: {
-      scale: 1.04,
-      boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.15)",
-      transition: { type: "spring", stiffness: 300, damping: 15 },
-    },
-    whileTap: {
-      scale: 0.97,
-      boxShadow: "0px 0px 25px rgba(255, 165, 0, 0.6)",
-    },
-  };
+  const motionProps = useMemo(() => (
+    {
+      initial: { opacity: 0, y: 20, scale: 0.9 },
+      animate: { opacity: 1, y: 0, scale: 1 },
+      exit: { opacity: 0, y: -20, scale: 0.9 },
+      transition: { duration: 0.4, ease: "easeOut" },
+      whileHover: {
+        scale: 1.04,
+        boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.15)",
+        transition: { type: "spring", stiffness: 300, damping: 15 },
+      },
+      whileTap: {
+        scale: 0.97,
+        boxShadow: "0px 0px 25px rgba(255, 165, 0, 0.6)",
+      },
+    }), []);
 
   return (
     <motion.div
@@ -68,14 +70,13 @@ export default function ProductCard({
       <div className="flex items-center space-x-2 sm:space-x-3">
         <button
           type="button"
-          onClick={decrement}
+          onClick={() => updateQuantity("decrement")}
           disabled={quantity === 1}
           aria-label="Disminuir cantidad"
-          className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg transition-colors cursor-pointer text-sm sm:text-base ${
-            quantity === 1
-              ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-              : "bg-gray-200 hover:bg-gray-300"
-          }`}
+          className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg transition-colors cursor-pointer text-sm sm:text-base ${quantity === 1
+            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+            : "bg-gray-200 hover:bg-gray-300"
+            }`}
         >
           -
         </button>
@@ -86,7 +87,7 @@ export default function ProductCard({
 
         <button
           type="button"
-          onClick={increment}
+          onClick={() => updateQuantity("increment")}
           aria-label="Aumentar cantidad"
           className="bg-gray-200 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg hover:bg-gray-300 transition-colors cursor-pointer text-sm sm:text-base"
         >

@@ -1,12 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 export default function Filtros({ categories, onFilter }) {
   const [selected, setSelected] = useState("Todos");
   const [showBar, setShowBar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0)
+  
+  //const [lastScrollY, setLastScrollY] = useState(0);
+
 
   const handleSelect = (category) => {
     setSelected(category);
@@ -22,7 +25,7 @@ export default function Filtros({ categories, onFilter }) {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
 
-      if (currentScroll > lastScrollY && currentScroll > 80) {
+      if (currentScroll > lastScrollY.current && currentScroll > 80) {
         // Scrolling hacia abajo → ocultar
         setShowBar(false);
       } else {
@@ -30,12 +33,12 @@ export default function Filtros({ categories, onFilter }) {
         setShowBar(true);
       }
 
-      setLastScrollY(currentScroll);
+      lastScrollY.current = currentScroll
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   return (
     <motion.div
