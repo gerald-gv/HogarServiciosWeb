@@ -28,7 +28,7 @@ export default function Productos() {
         const dataC = await fetch("/api/categories" , OPTIONS)
         const categoriasData = await dataC.json();
 
-        setCategorias(categoriasData);
+        setCategorias([{category: "Todos"}, ...categoriasData]);
 
       } catch (err){
         setError(err)

@@ -16,9 +16,9 @@ export default function Filtros({ categories, onFilter }) {
     onFilter(category === "Todos" ? null : category);
   };
 
-  const allCategories = categories.includes("Todos")
+  const allCategories = categories.some(c => c.category === "Todos")
     ? categories
-    : ["Todos", ...categories];
+    : [{ id: "todos", category: "Todos" }, ...categories];
 
   // 👇 Detecta el scroll y actualiza visibilidad de la barra
   useEffect(() => {
