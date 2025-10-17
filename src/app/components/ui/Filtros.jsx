@@ -70,21 +70,21 @@ export default function Filtros({ categories, onFilter }) {
       >
         {allCategories.map((category) => (
           <motion.li
-            key={category}
-            onClick={() => handleSelect(category)}
+            key={category.id}
+            onClick={() => handleSelect(category.category)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.96 }}
             className={`
               whitespace-nowrap px-3 py-2 md:p-3 rounded-xl font-medium text-sm sm:text-base 
               cursor-pointer transition-colors flex-shrink-0 
               ${
-                selected === category
+                selected === category.category
                   ? "bg-blue-500 text-white shadow-md"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }
             `}
           >
-            {category}
+            {category.category}
           </motion.li>
         ))}
       </ul>

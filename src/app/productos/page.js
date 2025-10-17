@@ -4,43 +4,49 @@ import { AnimatePresence, motion } from "framer-motion";
 import Filtros from "../components/ui/Filtros";
 import ProductCard from "../components/ui/ProductCard";
 
+
 export default function Productos() {
   const [filter, setFilter] = useState(null);
   const [productos, setProductos] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [error, setError] = useState(null);
 
+  const OPTIONS = {
+    method: "GET",
+    headers: {
+      "Josue": "FullShow"
+    }
+  }
   useEffect(() => {
+    const extractData = async () => {
+      try{
+        const dataP = await fetch("/api/products" , OPTIONS)
+        const productosData = await dataP.json();
+      
+        setProductos(productosData);
 
-    const fetchData = async () => {
-      try {
-        // Fetch hacia el archivo json
-        const res = await fetch("/data/productos.json")
+        const dataC = await fetch("/api/categories" , OPTIONS)
+        const categoriasData = await dataC.json();
 
-        if (!res.ok) {
-          console.error("Sucedio un error al jalar los datos")
-        }
+        setCategorias(categoriasData);
 
-        const data = await res.json()
-
-        // Actualizacion de los productos y categorias
-        setProductos(data.products)
-        setCategorias(data.categories)
-
-      } catch (err) {
+      } catch (err){
         setError(err)
       }
     }
-
-    fetchData()
-  }, [])
+    extractData();
+  }, []);
 
   const filtered = filter
     ? productos.filter((p) => p.category === filter)
     : productos;
 
   if (error) {
-    return <p className="text-center font-semibold text-2xl py-10 text-red-500">Error el cargar los productos...</p>
+    return (
+      <p className="text-center font-semibold text-2xl py-10 text-red-500">
+        Error el cargar los productos...
+      </p>
+    );
   }
 
   return (
