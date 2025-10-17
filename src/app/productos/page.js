@@ -11,26 +11,32 @@ export default function Productos() {
   const [categorias, setCategorias] = useState([]);
   const [error, setError] = useState(null);
 
-  const OPTIONS = {
-    method: "GET",
-    headers: {
-      "Josue": "FullShow"
-    }
-  }
   useEffect(() => {
-    const extractData = async () => {
-      try{
-        const dataP = await fetch("/api/products" , OPTIONS)
-        const productosData = await dataP.json();
-      
-        setProductos(productosData);
 
-        const dataC = await fetch("/api/categories" , OPTIONS)
+    const OPTIONS = {
+      method: "GET",
+      headers: {
+        "Josue": "FullShow"
+      }
+    }
+
+    const extractData = async () => {
+      try {
+
+        const [dataP, dataC] = await Promise.all([
+          fetch("/api/products", OPTIONS),
+          fetch("/api/categories", OPTIONS)
+        ])
+
+        const productosData = await dataP.json();
         const categoriasData = await dataC.json();
 
-        setCategorias([{category: "Todos"}, ...categoriasData]);
+        setProductos(productosData);
 
-      } catch (err){
+        
+        setCategorias([{id: "todos", category: "Todos" }, ...categoriasData]);
+
+      } catch (err) {
         setError(err)
       }
     }
