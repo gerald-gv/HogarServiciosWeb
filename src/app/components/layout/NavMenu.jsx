@@ -1,15 +1,17 @@
 'use client'
-import { Home, MenuIcon } from 'lucide-react'
+import { Home, MenuIcon, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
+import CartSidebar from '../CartSidebar'
+import { useCartStore } from '../../store/cartStore'
 import React, { useEffect, useRef, useState } from 'react'
 import Headroom from 'headroom.js'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
 import { Button } from '../ui/button'
 
 const NavMenu = () => {
-
     const [open, setOpen] = useState(false)
     const headerRef = useRef(null)
+    const { items, removeItem, clearCart } = useCartStore()
 
     const menuItems = [
         { name: "Inicio", href: "/" },
@@ -41,19 +43,23 @@ const NavMenu = () => {
                     </Link>
                 </div>
 
-                {/* NavMenu Desktop */}
-                <nav className='hidden lg:flex items-center gap-8'>
-                    <ul className='flex space-x-8'>
-                        {menuItems.map((item, i) => (
-                            <li key={i}>
-                                <Link href={item.href} className='relative group text-lg font-medium text-white hover:text-blue-400 transition-colors duration-300'>
-                                    {item.name}
-                                    <span className='absolute left-0 bottom-0 h-[2px] w-0 bg-sky-500 transition-all duration-300 group-hover:w-full' />
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
+                <div className='flex items-center gap-10'>
+                    {/* NavMenu Desktop */}
+                    <nav className='hidden lg:flex items-center gap-8'>
+                        <ul className='flex space-x-8'>
+                            {menuItems.map((item, i) => (
+                                <li key={i}>
+                                    <Link href={item.href} className='relative group text-lg font-medium text-white hover:text-blue-400 transition-colors duration-300'>
+                                        {item.name}
+                                        <span className='absolute left-0 bottom-0 h-[2px] w-0 bg-sky-500 transition-all duration-300 group-hover:w-full' />
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+
+                    <CartSidebar />
+                </div>
 
                 {/* NavMenu Mobile */}
 
