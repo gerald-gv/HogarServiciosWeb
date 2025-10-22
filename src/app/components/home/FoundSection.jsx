@@ -24,14 +24,14 @@ const FoundSection = () => {
           {/* Botones */}
           
           <div className='flex flex-col justify-center sm:flex-row gap-4'>
-            <Link href="/">
+            <Link href="/productos">
               <Button size="lg" className="rounded-3xl border-white text-white md:text-lg px-8 md:px-10 py-6 md:py-8 cursor-pointer hover:scale-105 transition-all duration-300">
                 Ver Productos
                 <ArrowRight className='ml-1 w-3 h-3 md:w-4 md:h-4' />
               </Button>
             </Link>
 
-            <Link href="/">
+            <Link href="/contacto">
               <Button size="lg" variant="outline" className="rounded-3xl bg-transparent border-white text-white md:text-lg px-8 md:px-10 py-6 md:py-8 cursor-pointer hover:scale-105 transition-all duration-300">
                 Ir a Contacto
               </Button>

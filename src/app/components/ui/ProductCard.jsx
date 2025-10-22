@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import { useState, useCallback, useMemo } from "react";
 import PropTypes from "prop-types";
+import { useCartStore } from "../../store/cartStore"
+import toast from "react-hot-toast";
 
 export default function ProductCard({
   image,
@@ -9,8 +11,6 @@ export default function ProductCard({
   brand,
   price,
   oldPrice,
-  index = 0,
-  onAddToCart,
 }) {
   const [quantity, setQuantity] = useState(1);
 
@@ -22,29 +22,40 @@ export default function ProductCard({
   }, [])
 
   const addToCart = useCallback(() => {
-    onAddToCart?.({ image, title, brand, price, quantity });
-  }, [onAddToCart, image, title, brand, price, quantity]);
+    const addItem = useCartStore.getState().addItem;
+    addItem({ image, title, brand, price, quantity });
+
+    toast.success(`El ${title} se agrego al carrito`, {
+      duration: 4000,
+      position: "top-center",
+    });
+
+  }, [image, title, brand, price, quantity]);
 
   const motionProps = {
-      initial: { opacity: 0, y: 20, scale: 0.9 },
-      animate: { opacity: 1, y: 0, scale: 1 },
-      exit: { opacity: 0, y: -20, scale: 0.9 },
-      transition: { duration: 0.4, ease: "easeOut" },
-      whileHover: {
-        scale: 1.04,
-        boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.15)",
-        transition: { type: "spring", stiffness: 300, damping: 15 },
-      },
-      whileTap: {
-        scale: 0.97,
-        boxShadow: "0px 0px 25px rgba(255, 165, 0, 0.6)",
-      },
-    };
+    initial: { opacity: 0, y: 20, scale: 0.9 },
+    animate: { opacity: 1, y: 0, scale: 1 },
+    exit: { opacity: 0, y: -20, scale: 0.9 },
+    transition: { duration: 0.4, ease: "easeOut" },
+    whileHover: {
+      scale: 1.04,
+      boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.15)",
+      transition: { type: "spring", stiffness: 300, damping: 15 },
+    },
+    whileTap: {
+      scale: 0.97,
+      boxShadow: "0px 0px 25px rgba(255, 165, 0, 0.6)",
+    },
+  };
+
+  const resetQuantity = useCallback(() => {
+    setQuantity(1);
+  }, []);
 
   return (
     <motion.div
       {...motionProps}
-      className="bg-white shadow-md rounded-2xl p-3 sm:p-4 md:p-5 flex flex-col items-center w-full max-w-xs mx-auto"
+      className="bg-white shadow-md rounded-2xl p-3 s  m:p-4 md:p-5 flex flex-col items-center w-full max-w-xs mx-auto"
     >
       <img
         src={image}
@@ -96,7 +107,10 @@ export default function ProductCard({
 
       <button
         type="button"
-        onClick={addToCart}
+        onClick={() => {
+          addToCart();
+          resetQuantity();
+        }}
         className="mt-3 sm:mt-4 bg-orange-500 text-white rounded-xl px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 font-semibold text-sm sm:text-base hover:bg-orange-600 active:scale-95 transition-all cursor-pointer w-full max-w-[180px]"
       >
         Agregar
