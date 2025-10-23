@@ -41,7 +41,7 @@ export default function Contacto() {
             {
               icon: <MapPin className="text-white" size={32} />,
               title: "Ubicación",
-              detail: "Lima, Perú",
+              detail: "Jirón de la Unión 1081 Lima, Perú",
             },
           ].map((info, i) => (
             <div

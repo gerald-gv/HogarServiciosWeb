@@ -40,7 +40,7 @@ const Footer = () => {
                         <ul className='flex gap-3'>
                             {marcaItems.map((item, i) => (
                                 <li className='flex items-center justify-center' key={i}>
-                                    <Link href={item.href} className='w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-sky-600 transition-colors duration-300'>
+                                    <Link href={item.href} className='w-10 h-10 flex items-center justify-center bg-gray-800 text-white rounded-full hover:bg-sky-500 transition-colors duration-300'>
                                         <item.icono className='w-6 h-6' />
                                     </Link>
                                 </li>
@@ -78,11 +78,11 @@ const Footer = () => {
                         </li>
                         <li className='flex gap-3 pb-2'>
                             <Phone className='w-5 h-5 mt-1 text-blue-500'/>
-                            +51 999 888 777
+                            +51 997 676 432
                         </li>
                         <li className='flex gap-3'>
                             <Mail className='w-5 h-5 mt-1 text-blue-500'/>
-                            info@hogar.com
+                            contacto@hogardomotico.com
                         </li>
                     </ul>
                 </div>
