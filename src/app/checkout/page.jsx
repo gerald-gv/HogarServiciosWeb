@@ -2,7 +2,10 @@
 import { useCartStore } from "../store/cartStore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { ShoppingCartIcon, BookOpenCheck, TrashIcon } from "lucide-react";
+import { ShoppingCartIcon, BookOpenCheck, TrashIcon, File } from "lucide-react";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import Boleta from "../components/boletaPago/PdfFile";
+
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -84,6 +87,16 @@ Por favor, confirme su pedido.
               >
                 Enviar pedido por WhatsApp <BookOpenCheck className="w-5 h-5 text-white" />
               </button>
+
+              {/* Generador de Boleta Electronica*/}
+              <PDFDownloadLink fileName="boleta-pago.pdf" document={<Boleta productos={items} total={totalPrice}/> } 
+                className="w-full bg-red-500 text-white py-3 rounded-xl mt-3 hover:bg-red-600 transition-all text-lg font-semibold flex items-center justify-center gap-2 cursor-pointer"
+              >
+                Generar PDF
+                <File className="w-5 h-5" />
+
+              </PDFDownloadLink>
+
 
               <button
                 onClick={() => {

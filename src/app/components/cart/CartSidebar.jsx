@@ -1,6 +1,6 @@
 "use client";
-import { useCartStore } from "../store/cartStore";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../components/ui/sheet";
+import { useCartStore } from "../../store/cartStore";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { motion } from "framer-motion";
 import { PlusIcon, MinusIcon, ShoppingCartIcon, TrashIcon } from "lucide-react";
 import { useRouter } from "next/navigation";

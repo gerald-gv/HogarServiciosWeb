@@ -1,7 +1,7 @@
 'use client'
 import { Home, MenuIcon, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
-import CartSidebar from '../CartSidebar'
+import CartSidebar from '../cart/CartSidebar'
 import { useCartStore } from '../../store/cartStore'
 import React, { useEffect, useRef, useState } from 'react'
 import Headroom from 'headroom.js'
@@ -58,6 +58,7 @@ const NavMenu = () => {
                         </ul>
                     </nav>
 
+                    {/* Carrito de Compras*/}
                     <CartSidebar />
                 </div>
 
