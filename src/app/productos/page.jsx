@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Filtros from "../components/ui/Filtros";
 import ProductCard from "../components/ui/ProductCard";
+import LoaderFiltros from "../components/productos/ui/LoaderFiltros";
+import LoaderProductos from "../components/productos/ui/LoaderProductos";
 
 
 export default function Productos() {
@@ -10,6 +12,8 @@ export default function Productos() {
   const [productos, setProductos] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [error, setError] = useState(null);
+  const [loadingProductos, setLoadingProductos] = useState(true)
+  const [loadingCategorias, setLoadingCategorias] = useState(true)
 
   useEffect(() => {
 
@@ -33,11 +37,14 @@ export default function Productos() {
 
         setProductos(productosData);
 
-        
-        setCategorias([{id: "todos", category: "Todos" }, ...categoriasData]);
+
+        setCategorias([{ id: "todos", category: "Todos" }, ...categoriasData]);
 
       } catch (err) {
         setError(err)
+      } finally {
+        setLoadingProductos(false)
+        setLoadingCategorias(false)
       }
     }
     extractData();
@@ -57,7 +64,13 @@ export default function Productos() {
 
   return (
     <section className="min-h-screen bg-gray-100 p-6 flex space-x-6">
-      <Filtros categories={categorias} onFilter={setFilter} />
+
+       {/* Loader para Categorias */}
+
+      {loadingCategorias ? (
+        <LoaderFiltros count={5} />
+      ) : <Filtros categories={categorias} onFilter={setFilter} />}
+
 
       <div className="flex-1">
         <motion.h1
@@ -70,24 +83,32 @@ export default function Productos() {
           {filter ? `Productos de ${filter}` : "Todos los productos"}
         </motion.h1>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`grid-${filter || "all"}`} // ✅ Key única para el grid
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-          >
-            {filtered.map((p, i) => (
-              <ProductCard
-                key={p.id} // ✅ Correcto
-                index={i}
-                {...p}
-              />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+        {/* Loader para Productos */}
+
+        {loadingProductos ? (
+          <LoaderProductos count={16} />
+        ) :
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`grid-${filter || "all"}`} // ✅ Key única para el grid
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            >
+              {filtered.map((p, i) => (
+                <ProductCard
+                  key={p.id} // ✅ Correcto
+                  index={i}
+                  {...p}
+                />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        }
+
+
       </div>
     </section>
   );
