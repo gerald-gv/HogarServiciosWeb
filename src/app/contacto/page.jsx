@@ -1,12 +1,54 @@
 "use client";
 
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { useState } from "react";
 import { toast } from "react-hot-toast";
 
 export default function Contacto() {
-  const handleSubmit = () => {
-    console.log("Enviando mensaje");
-    toast.success("Mensaje enviado correctamente");
+
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" })
+  const [load, setLoad] = useState(false)
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+
+  }
+
+  const OPTIONS = {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Josue": "FullShow"}
+  } 
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      setLoad(true)
+
+      const res = await fetch("/api/contacto", {
+        ...OPTIONS,
+        body: JSON.stringify(formData)
+      })
+
+
+      if (res.ok) {
+        console.log("Enviando mensaje");
+        toast.success("Mensaje enviado correctamente");
+      }
+
+    } catch (err) {
+      console.error("Sucedio un error", err)
+    } finally {
+      setLoad(false)
+
+    }
+
   };
 
   return (
@@ -41,7 +83,7 @@ export default function Contacto() {
             {
               icon: <MapPin className="text-white" size={32} />,
               title: "Ubicación",
-              detail: "Jirón de la Unión 1081 Lima, Perú",
+              detail: "Lima, Perú",
             },
           ].map((info, i) => (
             <div
@@ -70,17 +112,21 @@ export default function Contacto() {
 
           <form
             className="bg-gray-50 p-8 rounded-2xl shadow-md space-y-6 animate__animated animate__fadeIn"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <div className="grid md:grid-cols-2 gap-6">
               <input
                 type="text"
+                name="name"
+                onChange={handleChange}
                 placeholder="Tu nombre"
                 className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                 required
               />
               <input
                 type="email"
+                name="email"
+                onChange={handleChange}
                 placeholder="Tu correo"
                 className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                 required
@@ -88,14 +134,18 @@ export default function Contacto() {
             </div>
             <textarea
               rows="5"
+              name="message"
+              onChange={handleChange}
               placeholder="Tu mensaje"
               className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
               required
             ></textarea>
             <button
               type="submit"
-              onClick={handleSubmit}
-              className="flex cursor-pointer items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-3 px-6 rounded-lg font-medium hover:opacity-90 transition"
+              disabled={load}
+              className="flex items-center justify-center gap-2 py-3 px-6 rounded-lg font-medium text-white transition 
+             bg-gradient-to-r from-blue-600 to-indigo-700 hover:opacity-90
+             disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-70"
             >
               <Send size={18} /> Enviar Mensaje
             </button>
