@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏠 IE Domotics - Web App
 
-## Getting Started
+¡Bienvenido a **IE Domotics**!  
+Una aplicación moderna e interactiva construida con **Next.js** para la gestión y visualización de productos enfocados en la **domótica y la mejora del hogar inteligente**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛠️ Tecnologías Utilizadas - Frontend
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcnui&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-EA4C89?style=for-the-badge&logo=framer&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-000000?style=for-the-badge&logo=react&logoColor=white)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- ⚛️ **Next.js** – Framework de React para construir interfaces modernas, rápidas y escalables.  
+- 🌬️ **Tailwind CSS** – Framework de utilidades para un diseño ágil, limpio y responsivo.  
+- 💅 **shadcn/ui** – Librería de componentes accesibles y personalizables para una experiencia visual profesional.  
+- 🎞️ **Framer Motion** – Librería para animaciones fluidas y dinámicas, mejorando la interacción del usuario.  
+- 🧠 **Zustand** – Manejo de estado global simple y eficiente para una experiencia fluida.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🖥️ Backend - Tecnologías Utilizadas
 
-To learn more about Next.js, take a look at the following resources:
+![Supabase](https://img.shields.io/badge/Supabase-1C1C1C?style=for-the-badge&logo=supabase&logoColor=3ECF8E)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- ⚙️ **Supabase** – Plataforma backend que combina base de datos **PostgreSQL**, autenticación y almacenamiento en la nube, ideal para proyectos escalables y rápidos de implementar.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> ⚠️ Este repositorio aloja principalmente el **Frontend** del proyecto, con integración directa a **Supabase** como backend.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Proyecto en Producción
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🎉 El proyecto está desplegado y listo para ser explorado.  
+👉 **Accedé desde aquí:** [Ir a IE Domotics](https://ieodomotics.vercel.app/)
+
+---
+
