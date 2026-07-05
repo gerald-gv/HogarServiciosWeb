@@ -20,10 +20,6 @@ export default function Contacto() {
 
   }
 
-  const OPTIONS = {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "Josue": "FullShow"}
-  } 
 
 
   const handleSubmit = async (e) => {
@@ -32,7 +28,6 @@ export default function Contacto() {
       setLoad(true)
 
       const res = await fetch("/api/contacto", {
-        ...OPTIONS,
         body: JSON.stringify(formData)
       })
 

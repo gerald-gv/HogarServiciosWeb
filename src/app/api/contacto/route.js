@@ -1,16 +1,9 @@
 import { NextResponse } from "next/server";
 import { resend } from "@/lib/resend";
 import Email from "@/emails/EmailContacto";
-import { headers } from "next/headers";
 
 export async function POST(req) {
     try {
-        const headersList = await headers();
-        const token = headersList.get("Josue");
-
-        if (!(token === process.env.SI)) {
-            return NextResponse.json({ error: "No autorizado" }, { status: 401 })
-        }
         
         const { name, email, message } = await req.json()
 
