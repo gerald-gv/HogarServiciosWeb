@@ -21,7 +21,7 @@ export default function Filtros({ categories, onFilter }) {
     ? categories
     : [{ id: "todos", category: "Todos" }, ...categories];
 
-  // 👇 Detecta el scroll y actualiza visibilidad de la barra
+  // Detecta el scroll y actualiza visibilidad de la barra
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;

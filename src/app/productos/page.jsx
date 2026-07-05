@@ -74,7 +74,7 @@ export default function Productos() {
 
       <div className="flex-1">
         <motion.h1
-          key={`title-${filter || "all"}`} // ✅ Key única para el título
+          key={`title-${filter || "all"}`}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
@@ -90,7 +90,7 @@ export default function Productos() {
         ) :
           <AnimatePresence mode="wait">
             <motion.div
-              key={`grid-${filter || "all"}`} // ✅ Key única para el grid
+              key={`grid-${filter || "all"}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -99,7 +99,7 @@ export default function Productos() {
             >
               {filtered.map((p, i) => (
                 <ProductCard
-                  key={p.id} // ✅ Correcto
+                  key={p.id}
                   index={i}
                   {...p}
                 />
