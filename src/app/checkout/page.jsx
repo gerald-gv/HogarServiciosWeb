@@ -22,7 +22,7 @@ export default function CheckoutPage() {
   const handleSendWhatsApp = () => {
     if (items.length === 0) return;
 
-    const numero = "51997676432";
+    const numero = "51946874037";
     const mensaje = `
 🛍 *Nuevo pedido desde la web* 🛍
 
