@@ -51,7 +51,7 @@ export default function Productos() {
   }, []);
 
   const filtered = filter
-    ? productos.filter((p) => p.category === filter)
+    ? productos.filter((p) => p.category === filter.id)
     : productos;
 
   if (error) {
@@ -80,7 +80,7 @@ export default function Productos() {
           transition={{ duration: 0.3 }}
           className="text-2xl font-bold mb-6"
         >
-          {filter ? `Productos de ${filter}` : "Todos los productos"}
+          {filter ? `Productos de ${filter.category}` : "Todos los productos"}
         </motion.h1>
 
         {/* Loader para Productos */}

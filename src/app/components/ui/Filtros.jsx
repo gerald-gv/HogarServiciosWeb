@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 export default function Filtros({ categories, onFilter }) {
-  const [selected, setSelected] = useState("Todos");
+  const [selected, setSelected] = useState("todos");
   const [showBar, setShowBar] = useState(true);
   const lastScrollY = useRef(0)
   
@@ -12,8 +12,9 @@ export default function Filtros({ categories, onFilter }) {
 
 
   const handleSelect = (category) => {
-    setSelected(category);
-    onFilter(category === "Todos" ? null : category);
+    setSelected(category.id);
+    onFilter(category.id === "todos" ? null : category);
+    console.log("Selected category:", category);
   };
 
   const allCategories = categories.some(c => c.category === "Todos")
@@ -71,14 +72,14 @@ export default function Filtros({ categories, onFilter }) {
         {allCategories.map((category) => (
           <motion.li
             key={category.id}
-            onClick={() => handleSelect(category.category)}
+            onClick={() => handleSelect(category)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.96 }}
             className={`
               whitespace-nowrap px-3 py-2 md:p-3 rounded-xl font-medium text-sm sm:text-base 
               cursor-pointer transition-colors flex-shrink-0 
               ${
-                selected === category.category
+                selected === category.id
                   ? "bg-blue-500 text-white shadow-md"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }
