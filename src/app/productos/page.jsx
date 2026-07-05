@@ -20,7 +20,7 @@ export default function Productos() {
     const OPTIONS = {
       method: "GET",
       headers: {
-        "Josue": "FullShow"
+        "x-api-key": process.env.NEXT_PUBLIC_API_KEY
       }
     }
 
